@@ -1,0 +1,338 @@
+{%extends 'base.html'%}
+{%block content%}
+          <!-- Content wrapper -->
+          <div class="content-wrapper">
+            <!-- Content -->
+            <div class="container-xxl flex-grow-1 container-p-y">
+              
+              <div class="row">
+              <!-- Upper row -->
+                <!-- Janitors -->
+                <div class="col-md-6 col-lg-4 mb-4 ">
+                    <div class="card h-100">
+                      <div class="card-header d-flex align-items-center">
+                            <i class="bx bx-happy-beaming bx-md me-3" style="color:#59C1BD"></i>
+                        <h3 class="card-title m-0 me-2">Janitors</h5>
+                        
+                      </div>
+                          <!-- Janitors Table -->
+                                <div class="card-body table-responsive text-nowrap">
+                                  <table class="table table-hover">
+                                      <thead>
+                                      <tr>
+                                          <th class="cellleftjan">ID</th>
+                                          <th class="cellrightjan">Action</th>
+                                      </tr>
+                                      </thead>
+                                  </table>
+                                  <div style="overflow-y:scroll; height:250px">
+                                    <table class="table table-hover">
+                                      <tbody class="table-border-bottom-0">
+                                        {%for janitor in janitors%}
+                                        <tr><a href="janitor.html">
+                                            <td class="cellleftjan">{{janitor.name}}</td>
+                                            <td class="cellrightjan">
+                                              <a href="{%url 'janitor' janitor.id date%}"><button 
+                                                type="button" 
+                                                class="btn btn-sm rounded-pill btn-outline-success">View</button></a>
+                                                <a href="{%url 'chat' janitor.id%}"><button 
+                                                  type="button" 
+                                                  class="btn btn-sm rounded-pill btn-outline-primary">Send message</button></a>
+                                            </td>
+                                          </a>
+                                        </tr>
+                                        {%endfor%}
+                                        </tbody>
+                                    </table>
+                                  </div>
+                                  </div>
+                          <!--/ Janitors Table -->
+                      
+                    </div>
+                </div>
+                <!--/ Janitors -->
+
+                <!-- Collectors -->
+                <div class="col-md-6 col-lg-4 mb-4 ">
+                  <div class="card h-100">
+                    <div class="card-header d-flex align-items-center">
+                          <i class="bx bx-cool bx-md me-3" style="color:#59C1BD"></i>
+                      <h3 class="card-title m-0 me-2">Collectors</h5>
+                      
+                    </div>
+                        <!-- Collectors Table -->
+                                <div class="card-body table-responsive text-nowrap">
+                                <table class="table table-hover">
+                                    <thead>
+                                    <tr>
+                                        <th class="cellleftjan">ID</th>
+                                        <th class="cellrightjan">Action</th>
+                                    </tr>
+                                    </thead>
+                                </table>
+                                <div style="overflow-y:scroll;height:250px" >
+                                  <table class="table table-hover">
+                                    <tbody class="table-border-bottom-0">
+                                      
+                                      {%for collector in collectors%}
+                                      <tr>
+                                          <td class="cellleftjan">{{collector.name}}</a></td>
+                                          <td class="cellrightjan">
+                                            <a href="{%url 'collector' collector.id date%}"><button 
+                                              type="button" 
+                                              class="btn btn-sm rounded-pill btn-outline-success">View</button></a>
+                                              <a href="{%url 'chat' collector.id%}"><button 
+                                                type="button" 
+                                                class="btn btn-sm rounded-pill btn-outline-primary">Send message</button></a>
+                                          </td>
+                                      </tr>
+                                      {%endfor%}
+                                    </tbody>
+                                  </table>
+                                </div>
+                                </div>
+                        <!--/ Collectors Table -->
+                    
+                  </div>
+                </div>
+                <!--/ Collectors -->
+
+                <!-- Areas -->
+                <div class="col-md-6 col-lg-4 mb-4 ">
+                  <div class="card h-100">
+                    <div class="card-header d-flex align-items-center">
+                          <i class="bx bx-map bx-md me-3" style="color:#F08A5D"></i>
+                      <h3 class="card-title m-0 me-2">Areas</h5>
+                      
+                    </div>
+                        <!-- Areas Table -->
+                                <div class="card-body table-responsive text-nowrap">
+                                <table class="table table-hover">
+                                    <thead>
+                                    <tr>
+                                        <th style="width:40%">ID</th>
+                                        <th style="width:50%">Coordinate</th>
+                                    </tr>
+                                    </thead>
+                                </table>
+                                <div style="overflow-y:scroll;height:250px">
+                                  <table class="table table-hover">
+                                    <tbody class="table-border-bottom-0">
+                                    {%for area in areas%}
+                                    <tr>
+                                        <td style="width:50%">{{area.name}}</td>
+                                        <td style="width:50%">
+                                          {{area.location}}
+                                        </td>
+                                    </tr>
+                                    {%endfor%}
+                                    </tbody>
+                                  </table>
+                                </div>
+                                </div>
+                        <!--/ Areas Table -->
+                    
+                  </div>
+                </div>
+                <!--/ Areas -->
+              
+              <!-- Under row -->
+              
+                <!-- Trolleys and Vehicles -->
+                <div class="col-md-6 col-lg-6 ">
+                  <div class="row">
+                    <!-- Trolleys -->
+                    <div class="col-12 mb-4">
+                      <div class="card h-100">
+                        <div class="card-header d-flex align-items-center">
+                              <i class="bx bx-cart-alt bx-md me-3" style="color:#17B978"></i>
+                          <h3 class="card-title m-0 me-2">Trolleys</h5>
+                          
+                        </div>
+                            <!-- Trolleys Table -->
+                                    <div class="card-body table-responsive text-nowrap">
+                                    <table class="table table-hover">
+                                        <thead>
+                                        <tr>
+                                            <th style="width:48%">ID</th>
+                                            <th style="width:50%">Status</th>
+                                        </tr>
+                                        </thead>
+                                    </table>
+                                    <div style="overflow-y:scroll;height:150px">
+                                      <table class="table table-hover">
+                                        <tbody class="table-border-bottom-0">
+                                          {%for trolley in trolleys%}
+                                          <tr>
+                                              <td class="celllefttrolley">{{trolley.name}}</a></td>
+                                              <td class="cellrighttrolley">
+                                                {%if trolley in trolley_list%}
+                                                Unvailable
+                                                {%else%}
+                                                Available
+                                                {%endif%}
+                                              </td>
+                                          </tr>
+                                          {%endfor%}
+                                        </tbody>
+                                      </table>
+                                    </div>
+                                    </div>
+                            <!--/ Trolleys Table -->
+                        
+                      </div>
+                    </div>
+                    <!-- /Trolleys -->
+                    <!-- Vehicles -->
+                    <div class="col-12 mb-4">
+                      <div class="card h-100">
+                        <div class="card-header d-flex align-items-center">
+                              <i class="bx bx-car bx-md me-3" style="color:#10DDC2"></i>
+                          <h3 class="card-title m-0 me-2">Vehicles</h5>
+                        </div>
+                            <!-- Vehicles Table -->
+                                    <div class="card-body table-responsive text-nowrap">
+                                    <table class="table table-hover">
+                                        <thead>
+                                        <tr>
+                                            <th style="width:31%">ID</th>
+                                            <th style="width:30%">Status</th>
+                                            <th style="width:33%">Action</th>
+                                        </tr>
+                                        </thead>
+                                    </table>
+                                    <div style="overflow-y:scroll;height:150px">
+                                      <table class="table table-hover">
+                                        <tbody class="table-border-bottom-0">
+                                          {%for vehicle in vehicles%}
+                                        <tr>
+                                            <td class="cellleftvehicle">{{vehicle.name}}</a></td>
+                                            <td class="cellmidvehicle">
+                                              {%if vehicle in vehicle_list%}
+                                                Unvailable
+                                                {%else%}
+                                                Available
+                                                {%endif%}
+                                            </td>
+                                            <td class="cellrightvehicle">
+                                              <button 
+                                                type="button" 
+                                                class="btn btn-sm rounded-pill btn-outline-success"
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#viewVehicle{{vehicle.id}}">View</button>
+                                            </td>
+                                        </tr>
+                                        {%endfor%}
+                                        </tbody>
+                                      </table>
+                                    </div>
+                                    </div>
+                            <!--/ Vehicles Table -->
+                        
+                      </div>
+                    </div>
+                    <!-- Modal view vehicle -->
+                    {%for vehicle in vehicles%}
+                    <div class="modal fade" id="viewVehicle{{vehicle.id}}" tabindex="-1" aria-hidden="true">
+                      <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h3 class="modal-title" id="modalCenterTitle">Vehicle information</h5>
+                            <button
+                              type="button"
+                              class="btn-close"
+                              data-bs-dismiss="modal"
+                              aria-label="Close"
+                            ></button>
+                          </div>
+                          <div class="modal-body">
+                            
+                      <dl class="row mt-2">
+                        <dt class="col-sm-4">ID</dt>
+                        <dd class="col-sm-8">{{vehicle.id}}</dd>
+                        
+                        <dt class="col-sm-4">Weight</dt>
+                        <dd class="col-sm-8">{{vehicle.weight}}</dd>
+                        
+                        <dt class="col-sm-4">Capacity</dt>
+                        <dd class="col-sm-8">{{vehicle.capacity}}</dd>
+                        
+                        <dt class="col-sm-4">Fuel consumptions</dt>
+                        <dd class="col-sm-8">{{vehicle.fuel_cons}}</dd>
+                      </dl>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    {%endfor%}
+                    <!-- /Modal view vehicle -->
+                    <!-- Vehicles -->
+                  </div>
+                </div>
+                <!--/ Trolleys and Vehicles -->
+
+                <!-- MCP -->
+                <div class="col-md-6 col-lg-6 mb-4 ">
+                  <div class="card h-100">
+                    <div class="card-header d-flex align-items-center">
+                          <i class="bx bx-trash bx-md me-3" style="color:#D49A89"></i>
+                      <h3 class="card-title m-0 me-2">MCPs</h5>
+                      
+                    </div>
+                        <!-- MCPs Table -->
+                                <div class="card-body table-responsive text-nowrap">
+                                <table class="table table-hover">
+                                    <thead>
+                                    <tr>
+                                        <th style="width:25%">ID</th>
+                                        <th style="width:33%">Coordinate</th>
+                                        <th style="width:33%">Capacity</th>
+                                    </tr>
+                                    </thead>
+                                </table>
+                                <div style="overflow-y:scroll; height:450px" >
+                                  <table class="table table-hover">
+                                    <tbody class="table-border-bottom-0">
+                                      {%for mcp in mcps%}
+                                    <tr>
+                                        <td class="cellleftmcp">{{mcp.name}}</a></td>
+                                        <td class="cellmidmcp">
+                                          {{mcp.location}}
+                                        </td>
+                                        <td class="cellrightmcp">
+                                          {{mcp.capacity}}%
+                                        </td>
+                                    </tr>
+                                    {%endfor%}
+                                    </tbody>
+
+                                  </table>
+                                </div>
+                                </div>
+                        <!--/ MCPs Table -->
+                    
+                  </div>
+                </div>
+                <!-- /MCP -->
+
+            
+            
+              
+              </div>
+            <!-- / Content -->
+
+            <!-- Footer -->
+            <footer class="content-footer footer bg-footer-theme">
+              <div class="container-xxl d-flex flex-wrap justify-content-between py-2 flex-md-row flex-column">
+                
+              </div>
+            </footer>
+            <!-- / Footer -->
+
+            <div class="content-backdrop fade"></div>
+          
+            </div>
+          </div>
+          <!-- Content wrapper -->
+{%endblock content%}
+
