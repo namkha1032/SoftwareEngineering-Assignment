@@ -1,3 +1,7 @@
+gõ vào terminal để tải:
+
+pip install -r requirements.txt
+
 nếu bị redirect tới trang login
 Username: admin
 Password: 12345
