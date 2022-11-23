@@ -4,9 +4,9 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.contrib.auth import authenticate, login, logout
-from .models import Room, Topic, Message, User, Janitor, Collector, Vehicle, Area_Janitor, ChatMessage
+from .models import User, Janitor, Collector, Vehicle, Area_Janitor, ChatMessage
 from .models import Trolley, MCP, MCP_Collector, MCP_Janitor, Vehicle_Collector, Trolley_Janitor, Area, Worker
-from .forms import RoomForm, UserForm, MyUserCreationForm, DateForm
+from .forms import MyUserCreationForm, DateForm
 import datetime
 
 
@@ -33,8 +33,9 @@ def loginPage(request):
             messages.error(request, 'Username OR password does not exit')
 
     context = {'page': page}
-    return render(request, 'base/login_register.html', context)
+    return render(request, 'login.html', context)
 
+@login_required(login_url='login')
 def logoutUser(request):
     logout(request)
     return redirect('home_page')
