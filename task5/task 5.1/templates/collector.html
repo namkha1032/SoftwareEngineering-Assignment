@@ -1,0 +1,282 @@
+{%extends 'base.html'%}
+{%block content%}
+          <!-- Content wrapper -->
+          <div class="content-wrapper">
+            <!-- Content -->
+
+            <div class="container-xxl flex-grow-1 container-p-y">
+              <!-- Upper row -->
+              <div class="row">
+                <!-- Collector info -->
+                <div class="col-md-6 col-lg-4 order-0 mb-4">
+                    <div class="card h-100">
+                      <div class="card-header d-flex align-items-center">
+                        <i class="bx bx-id-card bx-md me-3" style="color:#59C1BD"></i>
+                        <h3 class="card-title m-0 me-2">Collector Information</h5>
+                        
+                      </div>
+                      <div class="card-body">
+                        <dl class="row mt-2">
+                          <dt class="col-sm-3">Name</dt>
+                          <dd class="col-sm-9">{{collector.name}}</dd>
+  
+                          <dt class="col-sm-3">ID</dt>
+                          <dd class="col-sm-9">
+                            {{collector.id}}
+                          </dd>
+                        </dl>
+                      </div>
+                    </div>
+                  </div>
+                <!--/ Collector info -->
+
+                <!-- Task -->
+                <div class="col-md-6 col-lg-8  mb-4">
+                  <div class="card h-100">
+                    <div class="card-header d-flex align-items-center">
+                        <i class="bx bx-task bx-md me-3" style="color:#59C1BD"></i>
+                          <h3 class="card-title m-0 me-2">Task for</h5>
+                        
+                          <form onchange="this.form.submit()" method="POST" action="{%url 'collector_date' collector.id%}" class="input-group" style="width:250px">
+                            {%csrf_token%}
+                            <input class="form-control" type="date" value="{{date}}" id="html5-date-input" name="my_date_field"/>
+                            <button type="submit" class="btn btn-primary">Set date</button>
+                          </form>
+                                                    
+                    </div>
+                      <div class="card-body">
+                          <div class="table-responsive text-nowrap">
+                            <!-- Chosen vehicle -->
+                            <table class="table table-borderless table-hover">
+                                <thead class="border-bottom">
+                                    <tr>
+                                        <th style="width:33%">Vehicle</th>
+                                        <th style="width:33%">ID</th>
+                                        <th style="width:33%">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td style="width:33%"></td>
+                                    <td style="width:33%">{{vehicle_date.vehicle.name}}</td>
+                                    <td style="width:33%"><button 
+                                        type="button" 
+                                        class="btn btn-sm rounded-pill btn-outline-warning" 
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#updateVehicle">Update</button>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <!-- Chosen MCPs -->
+                            <table class="table table-borderless table-hover">
+                                <thead class="border-bottom">
+                                    <tr>
+                                        <th style="width:33%">Chosen MCPs</th>
+                                        <th style="width:33%">ID</th>
+                                        <th style="width:33%">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                  {%for mcp in used_mcp%}
+                                    <tr>
+                                        <td style="width:33%"></td>
+                                        <td style="width:33%">{{mcp.name}}</td>
+                                        <td style="width:33%">
+                                          <form method="POST" action="{%url 'delete_collector_mcp' collector.id date%}">
+                                            {%csrf_token%}
+                                            <input type="hidden" name="chosenmcp" value="{{mcp.id}}">
+                                            <button 
+                                                type="submit" 
+                                                class="btn btn-sm rounded-pill btn-outline-danger">Delete
+                                            </button>
+                                          </form>
+                                        </td>
+                                    </tr>
+                                    {%endfor%}
+                                </tbody>
+                            </table>
+                          </div>
+                          <br>
+                          <div class="row">
+                            <div class="col-8"></div>
+                            <div class="col-4"><button 
+                                type="button" 
+                                class="btn btn-sm rounded-pill btn-outline-primary" 
+                                data-bs-toggle="modal"
+                                data-bs-target="#addMCP">Add MCP</button>
+                            </td>
+                            </div>
+                          </div>
+                      </div>
+                    </div>
+                </div>
+                  <!-- Update vehicle -->
+                  <div class="modal fade" id="updateVehicle" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h3 class="modal-title" id="modalCenterTitle">Add Vehicle</h5>
+                          <button
+                            type="button"
+                            class="btn-close"
+                            data-bs-dismiss="modal"
+                            aria-label="Close"
+                          ></button>
+                        </div>
+                        <form method="POST" action="{%url 'update_collector_vehicle' collector.id date%}">
+                          {%csrf_token%}
+                          <div class="modal-body">
+                            {%for vehicle in vehicle_all%}
+                            {%if vehicle in used_vehicle%}
+                            <div class="form-check mt-3">
+                              <input
+                                name="chosenvehicle"
+                                class="form-check-input"
+                                type="radio"
+                                value="{{vehicle.id}}"
+                                id="{{vehicle.name}}"
+                                disabled
+                              />
+                              <label class="form-check-label" for="mcp1"> {{vehicle.name}} </label>
+                            </div>
+                            {%else%}
+                            <div class="form-check mt-3">
+                              <input
+                                name="chosenvehicle"
+                                class="form-check-input"
+                                type="radio"
+                                value="{{vehicle.id}}"
+                                id="{{vehicle.name}}"
+                              />
+                              <label class="form-check-label" for="mcp1"> {{vehicle.name}} </label>
+                            </div>
+                            {%endif%}
+                            {%endfor%}
+                          </div>
+                          <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Add</button>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                  <!--/ Update vehicle -->
+                  <!-- Add MCPs -->
+                  <div class="modal fade" id="addMCP" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h3 class="modal-title" id="modalCenterTitle">Add MCP</h5>
+                          <button
+                            type="button"
+                            class="btn-close"
+                            data-bs-dismiss="modal"
+                            aria-label="Close"
+                          ></button>
+                        </div>
+                        <form method="POST" action="{%url 'add_collector_mcp' collector.id date%}">
+                          {%csrf_token%}
+                          <div class="modal-body">
+                            {%for mcp in mcp_all%}
+                            {%if mcp in used_mcp%}
+                            <div class="form-check mt-3">
+                              <input
+                                name="chosenmcp"
+                                class="form-check-input"
+                                type="radio"
+                                value="{{mcp.id}}"
+                                id="{{mcp.name}}"
+                                disabled
+                              />
+                              <label class="form-check-label" for="mcp1"> {{mcp.name}} </label>
+                            </div>
+                            {%else%}
+                            <div class="form-check mt-3">
+                              <input
+                                name="chosenmcp"
+                                class="form-check-input"
+                                type="radio"
+                                value="{{mcp.id}}"
+                                id="{{mcp.name}}"
+                              />
+                              <label class="form-check-label" for="mcp1"> {{mcp.name}} </label>
+                            </div>
+                            {%endif%}
+                            {%endfor%}
+                          </div>
+                          <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Add</button>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                  <!--/ Update MCP -->
+                <!--/ Task -->
+
+              </div>
+              <!-- Under row -->
+              <div class="row">
+                <div class="col-12 order-0 mb-4">
+                  <div class="card h-100">
+                    <div class="card-header d-flex align-items-center">
+                      <i class="bx bx-trip bx-md me-3" style="color:#59C1BD"></i>
+                      <h3 class="card-title m-0 me-2">Optimized route</h5>
+                    </div>
+                    <div class="card-body">
+                      {%if used_mcp_count == 0%}
+                      <iframe src="https://www.google.com/maps/embed/v1/view?key=AIzaSyBP0Qgh5Xdh-tkCYJRfd_gH3kownH5EhyU
+                      &center=10.772083758700413, 106.65789576327501
+                      &zoom=18
+                      &maptype=satellite" 
+                      width="100%" height="500px" style="border:0;" allowfullscreen="" 
+                      loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                      {%elif used_mcp_count == 1%}
+                      {%for mcp in used_mcp%}
+                      <iframe src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBP0Qgh5Xdh-tkCYJRfd_gH3kownH5EhyU
+                      &q={{mcp.location}}
+                      &center={{mcp.location}}
+                      &zoom=18
+                      &maptype=roadmap" 
+                      width="100%" height="500px" style="border:0;" allowfullscreen="" 
+                      loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                      {%endfor%}
+                      {%elif used_mcp_count == 2%}
+                      
+
+                      <iframe src="https://www.google.com/maps/embed/v1/directions?key=AIzaSyBP0Qgh5Xdh-tkCYJRfd_gH3kownH5EhyU
+                      &origin={{ori.location}}
+                      &destination={{dest.location}}" width="100%" height="500px" style="border:0;" 
+                      allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                      
+
+                      {%else%}
+                      
+                      <iframe src="https://www.google.com/maps/embed/v1/directions?key=AIzaSyBP0Qgh5Xdh-tkCYJRfd_gH3kownH5EhyU
+                      &origin={{ori.location}}
+                      &waypoints={{waypoint}}
+                      &destination={{dest.location}}
+                      " width="100%" height="500px" style="border:0;" 
+                      allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                      
+                      {%endif%}
+                       
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <!-- / Content -->
+
+            <!-- Footer -->
+            <footer class="content-footer footer bg-footer-theme">
+              <div class="container-xxl d-flex flex-wrap justify-content-between py-2 flex-md-row flex-column">
+                
+              </div>
+            </footer>
+            <!-- / Footer -->
+
+            <div class="content-backdrop fade"></div>
+          </div>
+          <!-- Content wrapper -->
+{%endblock content%}
