@@ -2,13 +2,11 @@ from django.contrib import admin
 
 # Register your models here.
 
-from .models import Area, Topic, Message, User, Janitor, MCP, Collector, Transportation, Worker, Trolley_Janitor, MCP_Collector, MCP_Janitor, Vehicle_Collector, Trolley, Vehicle, ChatMessage, Area_Janitor
+from .models import Area, User, Janitor, MCP, Collector, Transportation, Worker, Trolley_Janitor, MCP_Collector, MCP_Janitor, Vehicle_Collector, Trolley, Vehicle, ChatMessage, Area_Janitor
 
 
 admin.site.register(User)
 admin.site.register(Worker)
-admin.site.register(Topic)
-admin.site.register(Message)
 admin.site.register(MCP)
 admin.site.register(Janitor)
 admin.site.register(Collector)
