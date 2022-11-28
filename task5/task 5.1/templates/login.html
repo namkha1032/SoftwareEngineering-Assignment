@@ -88,7 +88,7 @@
               <!-- /Logo -->
               <h4 class="mb-2">Welcome! 👋</h4>
               <p class="mb-4">Please log-in to continue</p>
-
+              {% include 'messages.html' %}
               <form id="formAuthentication" class="mb-3" action="" method="POST">
                 {% csrf_token %}
                 <div class="mb-3">
