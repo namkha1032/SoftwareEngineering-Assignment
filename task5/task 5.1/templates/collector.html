@@ -58,12 +58,26 @@
                                 <tbody>
                                 <tr>
                                     <td style="width:33%"></td>
-                                    <td style="width:33%">{{vehicle_date.vehicle.name}}</td>
-                                    <td style="width:33%"><button 
+                                    <td style="width:33%">
+                                      {{vehicle_date.vehicle.name}}
+                                    </td>
+                                    <td style="width:33%">
+                                      <button 
                                         type="button" 
                                         class="btn btn-sm rounded-pill btn-outline-warning" 
                                         data-bs-toggle="modal"
-                                        data-bs-target="#updateVehicle">Update</button>
+                                        data-bs-target="#updateVehicle">Update
+                                      </button>
+                                      {%if vehicle_date != None%}
+                                      <form style="display:inline;"method="POST" action="{%url 'delete_collector_vehicle' collector.id date%}">
+                                        {%csrf_token%}
+                                        <input type="hidden" name="delete_vehicle" value="{{vehicle_date.vehicle.id}}">
+                                        <button 
+                                            type="submit" 
+                                            class="btn btn-sm rounded-pill btn-outline-danger">Delete
+                                        </button>
+                                      </form>
+                                      {%endif%}
                                     </td>
                                 </tr>
                                 </tbody>

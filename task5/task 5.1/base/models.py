@@ -103,6 +103,21 @@ class Area_Janitor(models.Model):
         ]
         ordering = ['work_date']
         
+class Trolley_Janitor(models.Model):
+    janitor = models.ForeignKey(Janitor, on_delete=models.CASCADE)
+    trolley = models.ForeignKey(Trolley, on_delete=models.CASCADE)
+    work_date = models.DateField()
+    
+    def __str__(self):
+        return "{}_{}_{}".format(self.janitor.__str__(), self.trolley.__str__(), self.work_date)
+    
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=['janitor', 'work_date'], name='trolley_janitor_date'
+            )
+        ]
+        
     
 class MCP_Collector(models.Model):
     collector = models.ForeignKey(Collector, on_delete=models.CASCADE)
@@ -135,20 +150,7 @@ class Vehicle_Collector(models.Model):
             )
         ]
     
-class Trolley_Janitor(models.Model):
-    janitor = models.ForeignKey(Janitor, on_delete=models.CASCADE)
-    trolley = models.ForeignKey(Trolley, on_delete=models.CASCADE)
-    work_date = models.DateField()
-    
-    def __str__(self):
-        return "{}_{}_{}".format(self.janitor.__str__(), self.trolley.__str__(), self.work_date)
-    
-    class Meta:
-        constraints = [
-            models.UniqueConstraint(
-                fields=['janitor', 'work_date'], name='trolley_janitor_date'
-            )
-        ]
+
     
 class Calendar(models.Model):
     date = models.DateField(null=True)

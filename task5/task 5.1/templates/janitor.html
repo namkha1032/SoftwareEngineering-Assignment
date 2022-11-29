@@ -60,11 +60,23 @@
                                       <tr>
                                         <td><strong>Area</strong></a></td>
                                         <td>{{used_area.area.name}}</td>
-                                        <td><button 
+                                        <td>
+                                          <button 
                                             type="button" 
                                             class="btn btn-sm rounded-pill btn-outline-warning" 
                                             data-bs-toggle="modal"
-                                          data-bs-target="#updateArea">Update</button>
+                                          data-bs-target="#updateArea">Update
+                                          </button>
+                                          {%if used_area != None%}
+                                          <form style="display:inline;"method="POST" action="{%url 'delete_janitor_area' janitor.id date%}">
+                                            {%csrf_token%}
+                                            <input type="hidden" name="delete_area" value="{{used_area.area.id}}">
+                                            <button 
+                                                type="submit" 
+                                                class="btn btn-sm rounded-pill btn-outline-danger">Delete
+                                            </button>
+                                          </form>
+                                          {%endif%}
                                         </td>
                                     </tr>
                                     
@@ -72,22 +84,46 @@
                                         <td><strong>MCP</strong></a></td>
                                         <td>{{mcp_date.mcp.name}}</td>
                                         
-                                        <td><button 
+                                        <td>
+                                          <button 
                                           type="button" 
                                           class="btn btn-sm rounded-pill btn-outline-warning"
                                           data-bs-toggle="modal"
-                                          data-bs-target="#updateMCP">Update</button>
+                                          data-bs-target="#updateMCP">Update
+                                          </button>
+                                            {%if mcp_date != None%}
+                                            <form style="display:inline;"method="POST" action="{%url 'delete_janitor_mcp' janitor.id date%}">
+                                              {%csrf_token%}
+                                              <input type="hidden" name="delete_mcp" value="{{mcp_date.mcp.id}}">
+                                              <button 
+                                                  type="submit" 
+                                                  class="btn btn-sm rounded-pill btn-outline-danger">Delete
+                                              </button>
+                                            </form>
+                                            {%endif%}
                                         </td>
                                         
                                     </tr>
                                     <tr>
                                         <td><strong>Trolley</strong></a></td>
                                         <td>{{trolley_date.trolley.name}}</td>
-                                        <td><button 
-                                          type="button" 
-                                          class="btn btn-sm rounded-pill btn-outline-warning" 
-                                          data-bs-toggle="modal"
-                                          data-bs-target="#updateTrolley">Update</button>
+                                        <td>
+                                          <button 
+                                            type="button" 
+                                            class="btn btn-sm rounded-pill btn-outline-warning" 
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#updateTrolley">Update
+                                          </button>
+                                          {%if trolley_date != None%}
+                                            <form style="display:inline;"method="POST" action="{%url 'delete_janitor_trolley' janitor.id date%}">
+                                              {%csrf_token%}
+                                              <input type="hidden" name="delete_trolley" value="{{trolley_date.trolley.id}}">
+                                              <button 
+                                                  type="submit" 
+                                                  class="btn btn-sm rounded-pill btn-outline-danger">Delete
+                                              </button>
+                                            </form>
+                                          {%endif%}
                                         </td>
                                     </tr>
                                     

@@ -119,6 +119,17 @@ def delete_collector_mcp(request, pk, date_time):
         return redirect('collector', pk = pk, date_time = date_time.strftime("%Y-%m-%d")) 
     
 @login_required(login_url='login')
+def delete_collector_vehicle(request, pk, date_time):
+
+    if request.method == "POST":
+        date_time = datetime.datetime.strptime(date_time,'%Y-%m-%d')
+        collector = Collector.objects.get(id = pk)
+        chosen_vehicle = Vehicle.objects.get(id = request.POST.get('delete_vehicle'))
+        Vehicle_Collector.objects.filter(work_date=date_time, collector = collector, vehicle = chosen_vehicle).delete()
+
+        return redirect('collector', pk = pk, date_time = date_time.strftime("%Y-%m-%d")) 
+    
+@login_required(login_url='login')
 def update_collector_vehicle(request, pk, date_time):
 
     if request.method == "POST":
@@ -197,6 +208,39 @@ def update_janitor_area(request, pk, date_time):
         chosen_area = Area.objects.get(id = request.POST.get('chosenarea'))
 
         obj, created = Area_Janitor.objects.update_or_create(janitor=janitor, work_date=date_time, defaults = {'area': chosen_area})
+        return redirect('janitor', pk = pk, date_time = date_time.strftime("%Y-%m-%d"))
+    
+@login_required(login_url='login')
+def delete_janitor_area(request, pk, date_time):
+
+    if request.method == "POST":
+        date_time = datetime.datetime.strptime(date_time,'%Y-%m-%d')
+        janitor = Janitor.objects.get(id = pk)
+        chosen_area = Area.objects.get(id = request.POST.get('delete_area'))
+
+        Area_Janitor.objects.filter(janitor=janitor, work_date=date_time, area =chosen_area).delete()
+        return redirect('janitor', pk = pk, date_time = date_time.strftime("%Y-%m-%d"))
+    
+@login_required(login_url='login')
+def delete_janitor_mcp(request, pk, date_time):
+
+    if request.method == "POST":
+        date_time = datetime.datetime.strptime(date_time,'%Y-%m-%d')
+        janitor = Janitor.objects.get(id = pk)
+        chosen_mcp = MCP.objects.get(id = request.POST.get('delete_mcp'))
+
+        MCP_Janitor.objects.filter(janitor=janitor, work_date=date_time, mcp =chosen_mcp).delete()
+        return redirect('janitor', pk = pk, date_time = date_time.strftime("%Y-%m-%d"))
+    
+@login_required(login_url='login')
+def delete_janitor_trolley(request, pk, date_time):
+
+    if request.method == "POST":
+        date_time = datetime.datetime.strptime(date_time,'%Y-%m-%d')
+        janitor = Janitor.objects.get(id = pk)
+        chosen_trolley = Trolley.objects.get(id = request.POST.get('delete_trolley'))
+
+        Trolley_Janitor.objects.filter(janitor=janitor, work_date=date_time, trolley = chosen_trolley).delete()
         return redirect('janitor', pk = pk, date_time = date_time.strftime("%Y-%m-%d"))
     
 @login_required(login_url='login')
