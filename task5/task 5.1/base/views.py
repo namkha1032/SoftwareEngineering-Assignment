@@ -41,12 +41,12 @@ def logoutUser(request):
 
 @login_required(login_url='login')
 def home_page(request):
-    janitors = Janitor.objects.all()
-    collectors = Collector.objects.all()
-    vehicles = Vehicle.objects.all()
-    trolleys = Trolley.objects.all()
-    mcps = MCP.objects.all()
-    areas = Area.objects.all()
+    janitors = Janitor.objects.all().order_by('name')
+    collectors = Collector.objects.all().order_by('name')
+    vehicles = Vehicle.objects.all().order_by('name')
+    trolleys = Trolley.objects.all().order_by('name')
+    mcps = MCP.objects.all().order_by('name')
+    areas = Area.objects.all().order_by('name')
     date_time = datetime.date.today()
     
     vehicle_list=[]
