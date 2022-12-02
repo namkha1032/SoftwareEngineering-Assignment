@@ -48,17 +48,80 @@ def home_page(request):
     mcps = MCP.objects.all().order_by('name')
     areas = Area.objects.all().order_by('name')
     date_time = datetime.date.today()
+    area_today = Area_Janitor.objects.filter(work_date = date_time)
+    mcp_today_janitor = MCP_Janitor.objects.filter(work_date = date_time)
+    trolley_today = Trolley_Janitor.objects.filter(work_date=date_time)
+    mcp_today_collector = MCP_Collector.objects.filter(work_date=date_time)
+    vehicle_today = Vehicle_Collector.objects.filter(work_date=date_time)
     
-    vehicle_list=[]
-    for item in Vehicle_Collector.objects.filter(work_date=date_time):
-        vehicle_list.append(item.vehicle)
+    vehicle_list=[] 
+    for vehicle in vehicles:
+        temp = {
+            "id": vehicle.id,
+            "name": vehicle.name,
+            "collector": "Available",
+        }
+        if (vehicle_today.filter(vehicle = vehicle).exists()):
+            temp["collector"] = vehicle_today.get(vehicle=vehicle).collector.name
         
-    troley_list=[]
-    for item in Trolley_Janitor.objects.filter(work_date=date_time):
-        troley_list.append(item.trolley)
+        vehicle_list.append(temp)
+
+        
+    trolley_list=[]
+    for trolley in trolleys:
+        temp = {
+            "id": trolley.id,
+            "name": trolley.name,
+            "janitor": "Available",
+        }
+        if (trolley_today.filter(trolley = trolley).exists()):
+            temp["janitor"] = trolley_today.get(trolley=trolley).janitor.name
+        
+        trolley_list.append(temp)
+    
+    area_list = []
+    
+    for area in areas:
+        temp = {
+            "id": area.id,
+            "name": area.name,
+            "janitor": "",
+        }
+        if (area_today.filter(area = area).exists()):
+            tmp = area_today.filter(area=area)
+            temp["janitor"] = ', '.join(area.janitor.name for area in tmp)
+        else:
+            temp["janitor"] = "Available"
+        area_list.append(temp)
+        
+    mcp_list = []
+    
+    for mcp in mcps:
+        temp = {
+            "id": mcp.id,
+            "name": mcp.name,
+            "capacity": mcp.capacity,
+            "janitor": "",
+            "collector": "",
+        }
+        if (mcp_today_janitor.filter(mcp = mcp).exists()):
+            tmp = mcp_today_janitor.filter(mcp = mcp)
+            temp["janitor"] = ', '.join(mcp.janitor.name for mcp in tmp)
+        else:
+            temp["janitor"] = "Available"
+            
+        if (mcp_today_collector.filter(mcp = mcp).exists()):
+            tmp = mcp_today_collector.filter(mcp = mcp)
+            temp["collector"] = ', '.join(mcp.collector.name for mcp in tmp)
+        else:
+            temp["collector"] = "Available"    
+            
+        mcp_list.append(temp)
+    
+    
     context ={'janitors': janitors, 'collectors': collectors, 'vehicles': vehicles,
               'trolleys': trolleys, 'mcps': mcps, 'areas': areas, 'date': date_time.strftime("%Y-%m-%d"),
-              'vehicle_list':vehicle_list, 'troley_list':troley_list}
+              'vehicle_list':vehicle_list, 'trolley_list':trolley_list, "area_list": area_list, "mcp_list": mcp_list}
     
     return render(request, 'home.html', context)
 

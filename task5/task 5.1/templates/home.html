@@ -112,11 +112,11 @@
                                     </tr>
                                     </thead>
                                     <tbody class="table-border-bottom-0">
-                                    {%for area in areas%}
+                                    {%for area in area_list%}
                                     <tr>
                                         <td>{{area.name}}</td>
                                         <td class="areamcp">
-                                          xxxxxxxxxxxxxxxxxxxxxxx
+                                          {{area.janitor}}
                                         </td>
                                     </tr>
                                     {%endfor%}
@@ -156,15 +156,11 @@
                                           </tr>
                                           </thead>
                                           <tbody class="table-border-bottom-0">
-                                            {%for trolley in trolleys%}
+                                            {%for trolley in trolley_list%}
                                             <tr>
                                                 <td>{{trolley.name}}</a></td>
                                                 <td>
-                                                  {%if trolley in trolley_list%}
-                                                  Unvailable
-                                                  {%else%}
-                                                  Available
-                                                  {%endif%}
+                                                  {{trolley.janitor}}
                                                 </td>
                                             </tr>
                                             {%endfor%}
@@ -197,15 +193,11 @@
                                             </tr>
                                             </thead>
                                             <tbody class="table-border-bottom-0">
-                                              {%for vehicle in vehicles%}
+                                              {%for vehicle in vehicle_list%}
                                             <tr>
                                                 <td>{{vehicle.name}}</a></td>
                                                 <td>
-                                                  {%if vehicle in vehicle_list%}
-                                                    Unvailable
-                                                    {%else%}
-                                                    Available
-                                                    {%endif%}
+                                                  {{vehicle.collector}}
                                                 </td>
                                                 <td>
                                                   <button 
@@ -285,14 +277,14 @@
                                     </tr>
                                     </thead>
                                     <tbody class="table-border-bottom-0">
-                                      {%for mcp in mcps%}
+                                      {%for mcp in mcp_list%}
                                     <tr>
                                         <td class="areamcp">{{mcp.name}}</a></td>
                                         <td class="areamcp">
-                                          xxxxxxxxxxxxxxxxxxxxxxx
+                                          {{mcp.janitor}}
                                         </td>
                                         <td class="areamcp">
-                                          xxxxxxxxxxxxxxxxxxxxxxx
+                                          {{mcp.collector}}
                                         </td>
                                         <td>
                                           {{mcp.capacity}}%
