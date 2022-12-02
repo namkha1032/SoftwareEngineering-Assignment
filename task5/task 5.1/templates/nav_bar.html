@@ -1,87 +1,274 @@
-          <!-- Navbar -->
+<!-- Navbar -->
 {%load static%}
-          <nav
-            class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme"
-            id="layout-navbar"
-            aria-label="breadcrumb"
-          >
-            <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
-              <!-- Breadcrumb -->
-              <div class="navbar-nav align-items-center">
-                <div class="nav-item d-flex align-items-center">
-                  <ol class="breadcrumb breadcrumb-style1" style="font-size:2rem">
-                      <li class="breadcrumb-item active">
-                        <a href="{%url 'home_page'%}">Home</a>
-                      </li>
-                    </ol>
+<nav
+  class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme"
+  id="layout-navbar"
+  aria-label="breadcrumb"
+>
+  <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
+    <!-- Breadcrumb -->
+    <div class="navbar-nav align-items-center">
+      <div class="nav-item d-flex align-items-center">
+        <ol class="breadcrumb breadcrumb-style1" style="font-size: 2rem">
+          <li class="breadcrumb-item active">
+            <a href="{%url 'home_page'%}">Home</a>
+          </li>
+        </ol>
+      </div>
+    </div>
+    <!-- /Breadcrumb -->
+
+    <ul class="navbar-nav flex-row align-items-center ms-auto">
+      <!-- Place this tag where you want the button to render. -->
+      <li class="nav-item lh-1 me-3">
+        <div class="btn-group">
+          <i
+            class="bx bx-bell bx-md bx-tada-hover"
+            data-bs-toggle="dropdown"
+            style="cursor: pointer; color:dodgerblue"
+          ></i>
+          <span class="badge badge-danger" style="position: absolute;
+          border-radius: 30px;
+          top: -5px;
+          right: -4px;
+          background-color:red;
+          font-size:11px">5</span>
+
+          <ul class="dropdown-menu dropdown-menu-end" style="width: 400px">
+            <li class="dropdown-item mb-1" style="margin: 0px">
+              <h5 style="margin: 0px"><strong>Notifications</strong></h5>
+            </li>
+            <li style="margin: 0px">
+              <hr class="dropdown-divider" style="margin: 0px" />
+            </li>
+            <li class="dropdown-item mb-1" style="margin: 0px">
+              <div class="row">
+                <div
+                  class="col-3 d-flex align-items-center justify-content-center"
+                >
+                  <i
+                    class="bx bxl-stack-overflow bx-md bx-border-circle"
+                    style="
+                      color: #ffffff;
+                      border-color: red;
+                      background-color: red;
+                    "
+                  ></i>
+                </div>
+                <div class="col-9">
+                  <h6
+                    class="dropdown-item-title mb-1"
+                    style="word-wrap: break-word"
+                  >
+                    <strong>BAI RAC PHU NHUAN IS FULL!!!</strong>
+                  </h6>
+                  <p class="text-sm mb-0">
+                    Please send more collectors to bai...
+                  </p>
+                  <p class="text-sm text-muted mb-0" style="padding: 0px">
+                    <i class="bx bx-time-five mb-0"></i> 5 Minutes Ago
+                  </p>
                 </div>
               </div>
-              <!-- /Breadcrumb -->
+            </li>
+            <li style="margin: 0px">
+              <hr class="dropdown-divider" style="margin: 0px" />
+            </li>
 
-              <ul class="navbar-nav flex-row align-items-center ms-auto">
-                <!-- Place this tag where you want the button to render. -->
-                <li class="nav-item lh-1 me-3">
-                    <div class="btn-group">
-                      <button
-                        type="button"
-                        class="btn btn-primary btn-icon rounded-pill dropdown-toggle hide-arrow"
-                        data-bs-toggle="dropdown"
-                        aria-expanded="false"
-                      >
-                        <i class="bx bx-bell bx-tada-hover"></i>
-                        <!-- <span class="badge rounded-pill badge-center h-px-20 w-px-20 bg-danger">3</span> -->
-                      </button type="button">
-                      <ul class="dropdown-menu dropdown-menu-end">
-                        <li class="dropdown-item"><h3><strong>Notification</strong></h3></li>
-                        <li><hr class="dropdown-divider" /></li>
+            <li class="dropdown-item">
+              <div class="row">
+                <div
+                  class="col-3 d-flex align-items-center justify-content-center"
+                >
+                  <i
+                    class="bx bxl-stack-overflow bx-md bx-border-circle"
+                    style="
+                      color: #ffffff;
+                      border-color: orange;
+                      background-color: orange;
+                    "
+                  ></i>
+                </div>
+                <div class="col-9">
+                  <h6
+                    class="dropdown-item-title mb-1"
+                    style="word-wrap: break-word"
+                  >
+                    <strong>BEN XE AN SUONG IS NEARLY FULL!!</strong>
+                  </h6>
+                  <p class="text-sm mb-0">
+                    Please send more collectors to ben...
+                  </p>
+                  <p class="text-sm text-muted mb-0" style="padding: 0px">
+                    <i class="bx bx-time-five mb-0"></i> 25 Minutes Ago
+                  </p>
+                </div>
+              </div>
+            </li>
+            <li style="margin: 0px">
+              <hr class="dropdown-divider" style="margin: 0px" />
+            </li>
 
-                        <li class="dropdown-item">mcp3 is full</strong></li>
-                        <li><hr class="dropdown-divider" /></li>
+            <li class="dropdown-item">
+              <div class="row">
+                <div
+                  class="col-3 d-flex align-items-center justify-content-center"
+                >
+                  <i
+                    class="bx bx-message-rounded-dots bx-md bx-border-circle"
+                    style="
+                      color: #ffffff;
+                      border-color: dodgerblue;
+                      background-color: dodgerblue;
+                    "
+                  ></i>
+                </div>
+                <div class="col-9">
+                  <h6
+                    class="dropdown-item-title mb-1"
+                    style="word-wrap: break-word"
+                  >
+                    <strong>NEW MESSAGE!</strong>
+                  </h6>
+                  <p class="text-sm mb-0">
+                    You got new message from Bao. Cli...
+                  </p>
+                  <p class="text-sm text-muted mb-0" style="padding: 0px">
+                    <i class="bx bx-time-five mb-0"></i> 4 Hours Ago
+                  </p>
+                </div>
+              </div>
+            </li>
+            <li style="margin: 0px">
+              <hr class="dropdown-divider" style="margin: 0px" />
+            </li>
+            <li class="dropdown-item mb-1" style="margin: 0px">
+              <div class="row">
+                <div
+                  class="col-3 d-flex align-items-center justify-content-center"
+                >
+                  <i
+                    class="bx bxl-stack-overflow bx-md bx-border-circle"
+                    style="
+                      color: #ffffff;
+                      border-color: red;
+                      background-color: red;
+                    "
+                  ></i>
+                </div>
+                <div class="col-9">
+                  <h6
+                    class="dropdown-item-title mb-1"
+                    style="word-wrap: break-word"
+                  >
+                    <strong>BAI RAC TAM BINH IS FULL!!!</strong>
+                  </h6>
+                  <p class="text-sm mb-0">
+                    Please send more collectors to bai...
+                  </p>
+                  <p class="text-sm text-muted mb-0" style="padding: 0px">
+                    <i class="bx bx-time-five mb-0"></i> 5 Hours Ago
+                  </p>
+                </div>
+              </div>
+            </li>
+            <li style="margin: 0px">
+              <hr class="dropdown-divider" style="margin: 0px" />
+            </li>
 
-                        <li class="dropdown-item">mcp5 is full</strong></li>
-                      </ul>
-                    </div>
-                  
-                </li>
+            <li class="dropdown-item">
+              <div class="row">
+                <div
+                  class="col-3 d-flex align-items-center justify-content-center"
+                >
+                  <i
+                    class="bx bxl-stack-overflow bx-md bx-border-circle"
+                    style="
+                      color: #ffffff;
+                      border-color: orange;
+                      background-color: orange;
+                    "
+                  ></i>
+                </div>
+                <div class="col-9">
+                  <h6
+                    class="dropdown-item-title mb-1"
+                    style="word-wrap: break-word"
+                  >
+                    <strong>VAN HANH MALL IS NEARLY FULL!!</strong>
+                  </h6>
+                  <p class="text-sm mb-0">
+                    Please send more collectors to ben...
+                  </p>
+                  <p class="text-sm text-muted mb-0" style="padding: 0px">
+                    <i class="bx bx-time-five mb-0"></i> 8 Hours Ago
+                  </p>
+                </div>
+              </div>
+            </li>
+            <li style="margin: 0px">
+              <hr class="dropdown-divider" style="margin: 0px" />
+            </li>
+            <li class="dropdown-item">
+              <p style="text-align: center; margin: 0px">
+                See all notifications
+              </p>
+            </li>
+          </ul>
+        </div>
+      </li>
 
+      <!-- User -->
+      <li class="nav-item navbar-dropdown dropdown-user dropdown">
+        <a
+          class="nav-link dropdown-toggle hide-arrow"
+          href="javascript:void(0);"
+          data-bs-toggle="dropdown"
+        >
+          <div class="avatar avatar-online">
+            <img
+              src="{%static 'images/avatars/1.png'%}"
+              alt
+              class="w-px-40 h-auto rounded-circle"
+            />
+          </div>
+        </a>
+        <ul class="dropdown-menu dropdown-menu-end">
+          <li>
+            <a class="dropdown-item" href="#">
+              <div class="d-flex">
+                <div class="flex-shrink-0 me-3">
+                  <div class="avatar avatar-online">
+                    <img
+                      src="{%static 'images/avatars/1.png'%}"
+                      alt
+                      class="w-px-40 h-auto rounded-circle"
+                    />
+                  </div>
+                </div>
+                <div class="flex-grow-1">
+                  <span class="fw-semibold d-block"
+                    >{{request.user.username}}</span
+                  >
+                  <small class="text-muted">Back Officer</small>
+                </div>
+              </div>
+            </a>
+          </li>
+          <li>
+            <div class="dropdown-divider"></div>
+          </li>
+          <li>
+            <a class="dropdown-item" href="{% url 'logout' %}">
+              <i class="bx bx-power-off me-2"></i>
+              <span class="align-middle">Log Out</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <!--/ User -->
+    </ul>
+  </div>
+</nav>
 
-                <!-- User -->
-                <li class="nav-item navbar-dropdown dropdown-user dropdown">
-                  <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
-                    <div class="avatar avatar-online">
-                      <img src="{%static 'images/avatars/1.png'%}" alt class="w-px-40 h-auto rounded-circle" />
-                    </div>
-                  </a>
-                  <ul class="dropdown-menu dropdown-menu-end">
-                    <li>
-                      <a class="dropdown-item" href="#">
-                        <div class="d-flex">
-                          <div class="flex-shrink-0 me-3">
-                            <div class="avatar avatar-online">
-                              <img src="{%static 'images/avatars/1.png'%}" alt class="w-px-40 h-auto rounded-circle" />
-                            </div>
-                          </div>
-                          <div class="flex-grow-1">
-                            <span class="fw-semibold d-block">{{request.user.username}}</span>
-                            <small class="text-muted">Back Officer</small>
-                          </div>
-                        </div>
-                      </a>
-                    </li>
-                    <li>
-                      <div class="dropdown-divider"></div>
-                    </li>
-                    <li>
-                      <a class="dropdown-item" href="{% url 'logout' %}">
-                        <i class="bx bx-power-off me-2"></i>
-                        <span class="align-middle">Log Out</span>
-                      </a>
-                    </li>
-                  </ul>
-                </li>
-                <!--/ User -->
-              </ul>
-            </div>
-          </nav>
-
-          <!-- / Navbar -->
+<!-- / Navbar -->
