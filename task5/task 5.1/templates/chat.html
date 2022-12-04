@@ -5,12 +5,12 @@
             <!-- Content -->
             <div class="container-xxl flex-grow-1 container-p-y">
               <!-- Chat -->
-                    <div class="card">
-                                <div class="py-3 px-4 border-bottom">
+                    <div class="card border-dark">
+                                <div class="card-header py-3 px-4 border-bottom">
                                     <h2 style="margin:auto">{{worker.name}}</h2>
                                 </div>
             
-                                <div class="position-relative">
+                                <div class="card-body position-relative">
                                     <div class="chat-messages p-4" >
             
                                     <div class="chat-message-left pb-4" style="width:60%">
@@ -29,7 +29,7 @@
                                     </div>
                                 </div>
             
-                                <div class="flex-grow-0 py-3 px-4 border-top">
+                                <div class="card-footer flex-grow-0 py-3 px-4 border-top">
                                 <form method="POST" action="{%url 'update_msg' worker.id%}">
                                     {%csrf_token%}
                                     <div class="input-group">

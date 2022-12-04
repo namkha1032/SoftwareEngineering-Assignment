@@ -115,7 +115,7 @@
                                     {%for area in area_list%}
                                     <tr>
                                         <td>{{area.name}}</td>
-                                        <td class="areamcp">
+                                        <td>
                                           {{area.janitor}}
                                         </td>
                                     </tr>
@@ -270,7 +270,7 @@
                                 <table class="table table-hover">
                                     <thead>
                                     <tr>
-                                        <th>ID</th>
+                                        <th class="areamcp">Name</th>
                                         <th>Janitors</th>
                                         <th>Collectors</th>
                                         <th>Capacity</th>
@@ -279,14 +279,14 @@
                                     <tbody class="table-border-bottom-0">
                                       {%for mcp in mcp_list%}
                                     <tr>
-                                        <td class="areamcp">{{mcp.name}}</a></td>
-                                        <td class="areamcp">
+                                        <td class = "areamcp" style="width:10%">{{mcp.name}}</a></td>
+                                        <td>
                                           {{mcp.janitor}}
                                         </td>
-                                        <td class="areamcp">
+                                        <td>
                                           {{mcp.collector}}
                                         </td>
-                                        <td>
+                                        <td style="width:10%">
                                           {{mcp.capacity}}%
                                         </td>
                                     </tr>
