@@ -101,7 +101,7 @@
                                             type="button" 
                                             class="btn btn-sm rounded-pill btn-outline-warning" 
                                             data-bs-toggle="modal"
-                                            data-bs-target="#updateMCP">Update
+                                            data-bs-target="#updateMCP{{mcp.id}}">Update
                                           </button>
                                           <form style="display:inline;" method="POST" action="{%url 'delete_collector_mcp' collector.id date%}">
                                             {%csrf_token%}
@@ -234,7 +234,8 @@
                   </div>
                   <!--/ Add MCP -->
                   <!-- Update MCP -->
-                  <div class="modal fade" id="updateMCP" tabindex="-1" aria-hidden="true">
+                  {%for tmp in used_mcp %}
+                  <div class="modal fade" id="updateMCP{{tmp.id}}" tabindex="-1" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered" role="document">
                       <div class="modal-content">
                         <div class="modal-header">
@@ -246,7 +247,7 @@
                             aria-label="Close"
                           ></button>
                         </div>
-                        <form method="POST" action="{%url 'add_collector_mcp' collector.id date%}">
+                        <form method="POST" action="{%url 'update_collector_mcp' collector.id date%}">
                           {%csrf_token%}
                           <div class="modal-body">
                             {%for mcp in mcp_all%}
@@ -271,6 +272,7 @@
                                 value="{{mcp.id}}"
                                 id="{{mcp.name}}"
                               />
+                              <input type="hidden" name="currentmcp" value="{{tmp.id}}"/>
                               <label class="form-check-label" for="mcp1"> {{mcp.name}} </label>
                             </div>
                             {%endif%}
@@ -283,6 +285,7 @@
                       </div>
                     </div>
                   </div>
+                  {%endfor%}
                   <!-- /Update MCP -->
                 <!--/ Task -->
 
