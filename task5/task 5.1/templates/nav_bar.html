@@ -10,8 +10,13 @@
     <div class="navbar-nav align-items-center">
       <div class="nav-item d-flex align-items-center">
         <ol class="breadcrumb breadcrumb-style1" style="font-size: 2rem">
-          <li class="breadcrumb-item active">
-            <a href="{%url 'home_page'%}">Home</a>
+          <li class="breadcrumb-item active" style="margin-left:0px">
+            <a href="{%url 'home_page'%}" style="margin-left:0px">
+              <button class="btn rounded-pill btn-outline-primary d-flex align-items-center" style="border:1px solid white"> 
+              <i class='bx bx-home bx-md me-2'></i>
+              <span style="font-size:1.8rem">Trang chủ</span>
+            </button>
+            </a>
           </li>
         </ol>
       </div>
@@ -36,7 +41,7 @@
 
           <ul class="dropdown-menu dropdown-menu-end" style="width: 400px">
             <li class="dropdown-item mb-1" style="margin: 0px">
-              <h5 style="margin: 0px"><strong>Notifications</strong></h5>
+              <h5 style="margin: 0px"><strong>Thông báo</strong></h5>
             </li>
             <li style="margin: 0px">
               <hr class="dropdown-divider" style="margin: 0px" />
@@ -60,13 +65,13 @@
                     class="dropdown-item-title mb-1"
                     style="word-wrap: break-word"
                   >
-                    <strong>BAI RAC PHU NHUAN IS FULL!!!</strong>
+                    <strong>BAI RAC PHU NHUAN ĐÃ ĐẦY!!!</strong>
                   </h6>
                   <p class="text-sm mb-0">
-                    Please send more collectors to bai...
+                    Hãy gửi các nhân viên lái xe đến bãi...
                   </p>
                   <p class="text-sm text-muted mb-0" style="padding: 0px">
-                    <i class="bx bx-time-five mb-0"></i> 5 Minutes Ago
+                    <i class="bx bx-time-five mb-0"></i> 5 phút trước
                   </p>
                 </div>
               </div>
@@ -94,13 +99,13 @@
                     class="dropdown-item-title mb-1"
                     style="word-wrap: break-word"
                   >
-                    <strong>BEN XE AN SUONG IS NEARLY FULL!!</strong>
+                    <strong>BEN XE AN SUONG GẦN ĐẦY!!</strong>
                   </h6>
                   <p class="text-sm mb-0">
-                    Please send more collectors to ben...
+                    Hãy gửi các nhân viên lái xe đến bến...
                   </p>
                   <p class="text-sm text-muted mb-0" style="padding: 0px">
-                    <i class="bx bx-time-five mb-0"></i> 25 Minutes Ago
+                    <i class="bx bx-time-five mb-0"></i> 25 phút trước
                   </p>
                 </div>
               </div>
@@ -128,13 +133,13 @@
                     class="dropdown-item-title mb-1"
                     style="word-wrap: break-word"
                   >
-                    <strong>NEW MESSAGE!</strong>
+                    <strong>TIN NHẮN MỚI!</strong>
                   </h6>
                   <p class="text-sm mb-0">
-                    You got new message from Bao. Cli...
+                    Bạn nhận được tin nhắn từ Bao. Nhấ...
                   </p>
                   <p class="text-sm text-muted mb-0" style="padding: 0px">
-                    <i class="bx bx-time-five mb-0"></i> 4 Hours Ago
+                    <i class="bx bx-time-five mb-0"></i> 4 giờ trước
                   </p>
                 </div>
               </div>
@@ -161,13 +166,13 @@
                     class="dropdown-item-title mb-1"
                     style="word-wrap: break-word"
                   >
-                    <strong>BAI RAC TAM BINH IS FULL!!!</strong>
+                    <strong>BAI RAC TAM BINH ĐÃ ĐẦY!!!</strong>
                   </h6>
                   <p class="text-sm mb-0">
-                    Please send more collectors to bai...
+                    Hãy gửi các nhân viên lái xe đến bãi...
                   </p>
                   <p class="text-sm text-muted mb-0" style="padding: 0px">
-                    <i class="bx bx-time-five mb-0"></i> 5 Hours Ago
+                    <i class="bx bx-time-five mb-0"></i> 5 giờ trước
                   </p>
                 </div>
               </div>
@@ -195,13 +200,13 @@
                     class="dropdown-item-title mb-1"
                     style="word-wrap: break-word"
                   >
-                    <strong>VAN HANH MALL IS NEARLY FULL!!</strong>
+                    <strong>VAN HANH MALL GẦN ĐẦY!!</strong>
                   </h6>
                   <p class="text-sm mb-0">
-                    Please send more collectors to ben...
+                    Hãy gửi các nhân viên lái xe đến Vạn...
                   </p>
                   <p class="text-sm text-muted mb-0" style="padding: 0px">
-                    <i class="bx bx-time-five mb-0"></i> 8 Hours Ago
+                    <i class="bx bx-time-five mb-0"></i> 8 giờ trước
                   </p>
                 </div>
               </div>
@@ -211,7 +216,7 @@
             </li>
             <li class="dropdown-item">
               <p style="text-align: center; margin: 0px">
-                See all notifications
+                Xem tất cả thông báo
               </p>
             </li>
           </ul>
@@ -250,7 +255,7 @@
                   <span class="fw-semibold d-block"
                     >{{request.user.username}}</span
                   >
-                  <small class="text-muted">Back Officer</small>
+                  <small class="text-muted">Nhân viên điều phối</small>
                 </div>
               </div>
             </a>
@@ -261,7 +266,7 @@
           <li>
             <a class="dropdown-item" href="{% url 'logout' %}">
               <i class="bx bx-power-off me-2"></i>
-              <span class="align-middle">Log Out</span>
+              <span class="align-middle">Đăng xuất</span>
             </a>
           </li>
         </ul>

@@ -64,9 +64,10 @@
     />
 
     <!-- Page CSS -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.css">
     <style>
       
-      .tableFixHead {
+      /* .tableFixHead {
         overflow: auto;
       }
       .tableFixHead thead th {
@@ -74,7 +75,7 @@
         top: 0;
         z-index: 1;
         background-color:white;
-      }
+      } */
       th, td {
         text-align:center;
       }
@@ -125,6 +126,15 @@
         border-radius: 25px;
         background-color: #78e08f;
       }
+      .inputSearch{
+        justify-content: right;
+      }
+      .styleSearch{
+        border:1px solid grey;
+        height:30px;
+        border-radius:30px;
+        padding-left:8px;
+      }
     </style>
     <!-- Helpers -->
     <script src="{% static 'vendor/js/helpers.js' %}"></script>
@@ -145,7 +155,7 @@
         <!-- Layout container -->
         <div class="layout-page">
           <!-- Navbar -->
-
+          
           {%include 'nav_bar.html'%}
 
           <!-- / Navbar -->
@@ -184,5 +194,98 @@
     <!-- Place this tag in your head or just before your close body tag. -->
 
     <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.js"></script>
+    <script>
+        $(document).ready(function() {
+          // Search Janitors
+            var janTable = $('#janTable').DataTable({
+              "lengthChange": false,
+              "dom": 'lrtip',
+              scrollY: '220px',
+              scrollCollapse: true,
+              paging: false,
+              info: false,
+              "ordering": false,
+              "columnDefs": [
+                  { "targets": [1], "searchable": false }
+              ]
+            });
+            $('#janSearch').on( 'keyup', function () {
+              janTable.search( this.value ).draw();
+            });
+          // Search Collectors
+            var colTable = $('#colTable').DataTable({
+              "lengthChange": false,
+              "dom": 'lrtip',
+              scrollY: '220px',
+              scrollCollapse: true,
+              paging: false,
+              info: false,
+              "ordering": false,
+              "columnDefs": [
+                  { "targets": [1], "searchable": false }
+              ]
+            });
+            $('#colSearch').on( 'keyup', function () {
+              colTable.search( this.value ).draw();
+            });
+          // Search Areas
+            var areaTable = $('#areaTable').DataTable({
+              "lengthChange": false,
+              "dom": 'lrtip',
+              scrollY: '220px',
+              scrollCollapse: true,
+              paging: false,
+              "ordering": false,
+              info: false
+            });
+            $('#areaSearch').on( 'keyup', function () {
+              areaTable.search( this.value ).draw();
+            });
+          // Search Trolleys
+            var trolleyTable = $('#trolleyTable').DataTable({
+              "lengthChange": false,
+              "dom": 'lrtip',
+              scrollY: '120px',
+              scrollCollapse: true,
+              paging: false,
+              "ordering": false,
+              info: false
+            });
+            $('#trolleySearch').on( 'keyup', function () {
+              trolleyTable.search( this.value ).draw();
+            });
+          // Search Collectors
+            var vehicleTable = $('#vehicleTable').DataTable({
+              "lengthChange": false,
+              "dom": 'lrtip',
+              scrollY: '120px',
+              scrollCollapse: true,
+              paging: false,
+              info: false,
+              "ordering": false,
+              "columnDefs": [
+                  { "targets": [2], "searchable": false }
+              ]
+            });
+            $('#vehicleSearch').on( 'keyup', function () {
+              vehicleTable.search( this.value ).draw();
+            });
+          // Search MCPs
+            var mcpTable = $('#mcpTable').DataTable({
+              "lengthChange": false,
+              "dom": 'lrtip',
+              scrollY: '400pxpx',
+              scrollCollapse: true,
+              paging: false,
+              "ordering": false,
+              info: false
+            });
+            $('#mcpSearch').on( 'keyup', function () {
+              mcpTable.search( this.value ).draw();
+            });
+        });
+    </script>
   </body>
 </html>

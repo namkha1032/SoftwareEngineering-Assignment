@@ -12,16 +12,16 @@
                     <div class="card h-100">
                       <div class="card-header d-flex align-items-center">
                         <i class="bx bx-id-card bx-md me-3" style="color:#59C1BD"></i>
-                        <h3 class="card-title m-0 me-2">Collector Information</h5>
+                        <h3 class="card-title m-0 me-2">Thông tin nhân viên</h5>
                         
                       </div>
                       <div class="card-body">
                         <dl class="row mt-2">
-                          <dt class="col-sm-3">Name</dt>
-                          <dd class="col-sm-9">{{collector.name}}</dd>
+                          <dt class="col-sm-5">Tên</dt>
+                          <dd class="col-sm-7">{{collector.name}}</dd>
   
-                          <dt class="col-sm-3">ID</dt>
-                          <dd class="col-sm-9">
+                          <dt class="col-sm-5">Mã số nhân viên</dt>
+                          <dd class="col-sm-7">
                             {{collector.id}}
                           </dd>
                         </dl>
@@ -35,12 +35,12 @@
                   <div class="card h-100">
                     <div class="card-header d-flex align-items-center">
                         <i class="bx bx-task bx-md me-3" style="color:#59C1BD"></i>
-                          <h3 class="card-title m-0 me-2">Task for</h5>
+                          <h3 class="card-title m-0 me-2">Thông tin công việc</h5>
                         
                           <form onchange="this.form.submit()" method="POST" action="{%url 'collector_date' collector.id%}" class="input-group" style="width:250px">
                             {%csrf_token%}
                             <input class="form-control" type="date" value="{{date}}" id="html5-date-input" name="my_date_field"/>
-                            <button type="submit" class="btn btn-primary">Set date</button>
+                            <button type="submit" class="btn btn-primary">Đặt ngày</button>
                           </form>
                                                     
                     </div>
@@ -50,9 +50,9 @@
                             <table class="table table-borderless table-hover">
                                 <thead class="border-bottom">
                                     <tr>
-                                        <th style="width:33%">Vehicle</th>
-                                        <th style="width:33%">ID</th>
-                                        <th style="width:33%">Action</th>
+                                        <th style="width:33%">Xe chở rác</th>
+                                        <th style="width:33%">Mã số</th>
+                                        <th style="width:33%">Hành động</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -61,12 +61,12 @@
                                     <td style="width:33%">
                                       {{vehicle_date.vehicle.name}}
                                     </td>
-                                    <td style="width:33%;text-align:left;padding-left:9%">
+                                    <td style="width:33%">
                                       <button 
                                         type="button" 
                                         class="btn btn-sm rounded-pill btn-outline-warning" 
                                         data-bs-toggle="modal"
-                                        data-bs-target="#updateVehicle">Update
+                                        data-bs-target="#updateVehicle">Cập nhật
                                       </button>
                                       {%if vehicle_date != None%}
                                       <form style="display:inline;"method="POST" action="{%url 'delete_collector_vehicle' collector.id date%}">
@@ -74,7 +74,7 @@
                                         <input type="hidden" name="delete_vehicle" value="{{vehicle_date.vehicle.id}}">
                                         <button 
                                             type="submit" 
-                                            class="btn btn-sm rounded-pill btn-outline-danger">Delete
+                                            class="btn btn-sm rounded-pill btn-outline-danger">Xóa
                                         </button>
                                       </form>
                                       {%endif%}
@@ -86,9 +86,9 @@
                             <table class="table table-borderless table-hover">
                                 <thead class="border-bottom">
                                     <tr>
-                                        <th style="width:33%">Chosen MCPs</th>
-                                        <th style="width:33%">ID</th>
-                                        <th style="width:33%">Action</th>
+                                        <th style="width:33%">Các MCP đã giao</th>
+                                        <th style="width:33%">Mã số</th>
+                                        <th style="width:33%">Hành động</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -96,19 +96,19 @@
                                     <tr>
                                         <td style="width:33%"></td>
                                         <td style="width:33%">{{mcp.name}}</td>
-                                        <td style="width:33%;text-align:left;padding-left:9%">
+                                        <td style="width:33%">
                                           <button 
                                             type="button" 
                                             class="btn btn-sm rounded-pill btn-outline-warning" 
                                             data-bs-toggle="modal"
-                                            data-bs-target="#updateMCP{{mcp.id}}">Update
+                                            data-bs-target="#updateMCP{{mcp.id}}">Cập nhật
                                           </button>
                                           <form style="display:inline;" method="POST" action="{%url 'delete_collector_mcp' collector.id date%}">
                                             {%csrf_token%}
                                             <input type="hidden" name="chosenmcp" value="{{mcp.id}}">
                                             <button 
                                                 type="submit" 
-                                                class="btn btn-sm rounded-pill btn-outline-danger">Delete
+                                                class="btn btn-sm rounded-pill btn-outline-danger">Xóa
                                             </button>
                                           </form>
                                         </td>
@@ -121,7 +121,7 @@
                                         type="button" 
                                         class="btn btn-sm rounded-pill btn-outline-primary" 
                                         data-bs-toggle="modal"
-                                        data-bs-target="#addMCP">Add MCP</button></td>
+                                        data-bs-target="#addMCP">Thêm MCP</button></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -136,7 +136,7 @@
                     <div class="modal-dialog modal-dialog-centered" role="document">
                       <div class="modal-content">
                         <div class="modal-header">
-                          <h3 class="modal-title" id="modalCenterTitle">Add Vehicle</h5>
+                          <h3 class="modal-title" id="modalCenterTitle">Chọn xe chở rác</h5>
                           <button
                             type="button"
                             class="btn-close"
@@ -175,7 +175,7 @@
                             {%endfor%}
                           </div>
                           <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary">Add</button>
+                            <button type="submit" class="btn btn-primary">Lưu</button>
                           </div>
                         </form>
                       </div>
@@ -187,7 +187,7 @@
                     <div class="modal-dialog modal-dialog-centered" role="document">
                       <div class="modal-content">
                         <div class="modal-header">
-                          <h3 class="modal-title" id="modalCenterTitle">Add MCP</h5>
+                          <h3 class="modal-title" id="modalCenterTitle">Chọn MCP</h5>
                           <button
                             type="button"
                             class="btn-close"
@@ -226,7 +226,7 @@
                             {%endfor%}
                           </div>
                           <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary">Add</button>
+                            <button type="submit" class="btn btn-primary">Lưu</button>
                           </div>
                         </form>
                       </div>
@@ -296,7 +296,7 @@
                   <div class="card h-100">
                     <div class="card-header d-flex align-items-center">
                       <i class="bx bx-trip bx-md me-3" style="color:#59C1BD"></i>
-                      <h3 class="card-title m-0 me-2">Optimized route</h5>
+                      <h3 class="card-title m-0 me-2">Đường đi ngắn nhất</h5>
                     </div>
                     <div class="card-body">
                       {%if used_mcp_count == 0%}
