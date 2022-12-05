@@ -59,7 +59,7 @@ def home_page(request):
         temp = {
             "id": vehicle.id,
             "name": vehicle.name,
-            "collector": "Available",
+            "collector": "Chưa giao",
         }
         if (vehicle_today.filter(vehicle = vehicle).exists()):
             temp["collector"] = vehicle_today.get(vehicle=vehicle).collector.name
@@ -72,7 +72,7 @@ def home_page(request):
         temp = {
             "id": trolley.id,
             "name": trolley.name,
-            "janitor": "Available",
+            "janitor": "Chưa giao",
         }
         if (trolley_today.filter(trolley = trolley).exists()):
             temp["janitor"] = trolley_today.get(trolley=trolley).janitor.name
@@ -91,7 +91,7 @@ def home_page(request):
             tmp = area_today.filter(area=area)
             temp["janitor"] = ', '.join(area.janitor.name for area in tmp)
         else:
-            temp["janitor"] = "Available"
+            temp["janitor"] = "Chưa giao"
         area_list.append(temp)
         
     mcp_list = []
@@ -108,13 +108,13 @@ def home_page(request):
             tmp = mcp_today_janitor.filter(mcp = mcp)
             temp["janitor"] = ', '.join(mcp.janitor.name for mcp in tmp)
         else:
-            temp["janitor"] = "Available"
+            temp["janitor"] = "Chưa giao"
             
         if (mcp_today_collector.filter(mcp = mcp).exists()):
             tmp = mcp_today_collector.filter(mcp = mcp)
             temp["collector"] = ', '.join(mcp.collector.name for mcp in tmp)
         else:
-            temp["collector"] = "Available"    
+            temp["collector"] = "Chưa giao"    
             
         mcp_list.append(temp)
     
@@ -129,6 +129,12 @@ def home_page(request):
 def collector_page(request, pk, date_time):
     collector = Collector.objects.get(id = pk)
     date_time = datetime.datetime.strptime(date_time,'%Y-%m-%d').date()
+    is_checked = True
+    if(date_time <= datetime.date.today()):
+        is_checked = True
+    else:
+        is_checked = False
+    
     mcp_list = MCP_Collector.objects.filter(collector = collector, work_date = date_time).order_by('created')
     used_mcp =[]
     for item in mcp_list:
@@ -149,7 +155,7 @@ def collector_page(request, pk, date_time):
     waypoint = waypoint[:-1]
     context = {'collector':collector, 'used_mcp':used_mcp, 'date': str(date_time), 'vehicle_date': vehicle_date,
                'mcp_all': MCP.objects.all(), 'used_vehicle': used_vehicle, 'vehicle_all': Vehicle.objects.all(),
-               'used_mcp_count': len(used_mcp), 'ori': ori, 'dest': dest, 'waypoint': waypoint}
+               'used_mcp_count': len(used_mcp), 'ori': ori, 'dest': dest, 'waypoint': waypoint, "is_checked": is_checked}
     return render(request, 'collector.html', context)
 
 @login_required(login_url='login')
@@ -220,6 +226,11 @@ def update_collector_mcp(request, pk, date_time):
 def janitor_page(request, pk, date_time):
     janitor = Janitor.objects.get(id = pk)
     date_time = datetime.datetime.strptime(date_time,'%Y-%m-%d').date()
+    is_checked = True
+    if(date_time <= datetime.date.today()):
+        is_checked = True
+    else:
+        is_checked = False
     mcp_list = MCP_Janitor.objects.filter(janitor = janitor, work_date = date_time)
     area_list = Area_Janitor.objects.filter(janitor = janitor, work_date = date_time)
     mcp_date = mcp_list.first()
@@ -243,7 +254,7 @@ def janitor_page(request, pk, date_time):
         
     context = {'janitor':janitor, 'mcp_date':mcp_date, 'date': str(date_time), 'trolley_date': trolley_date,
                'mcp_all': MCP.objects.all(), 'used_trolley': used_trolley, 'trolley_all': Trolley.objects.all(),
-               'area_all': Area.objects.all(), 'used_area':used_area, 'map_choice': map_choice}
+               'area_all': Area.objects.all(), 'used_area':used_area, 'map_choice': map_choice, "is_checked": is_checked}
     return render(request, 'janitor.html', context)
     
 @login_required(login_url='login')

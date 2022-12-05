@@ -24,6 +24,15 @@
                           <dd class="col-sm-7">
                             {{janitor.id}}
                           </dd>
+                          <dt class="col-sm-5">Điểm danh</dt>
+                            {%if is_checked%}
+                            <dd class="col-sm-7" style="color: green;">
+                              Có mặt
+                            {%else%}
+                            <dd class="col-sm-7">
+                              ---
+                            {%endif%}
+                          </dd>
                         </dl>
                       </div>
                     </div>
